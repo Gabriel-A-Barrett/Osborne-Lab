@@ -183,4 +183,3 @@ ci <- confint.zyp(zen)
 print(ci)
 ````
 
-
