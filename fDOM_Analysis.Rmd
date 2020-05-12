@@ -1,0 +1,186 @@
+---
+title: "Analyzing fDOM"
+author: "Gabriel Barrett, Nathan Shivers, Jacqueline Stephens"
+date: "5/12/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE,echo=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(ggpubr)
+library(scales)
+library(fuzzyjoin)
+library(lubridate)
+library("ggspatial")
+library("rnaturalearth")
+library("rnaturalearthdata")
+setwd("C:/Users/eagle/Documents/2019-2021/2020-2021 Spring/EEB4100/Group_Project/")
+Pellicer <- read.csv("Pellicer_Sonde_Data.csv") 
+Precip <- read.csv("GTMPCMET.csv")
+```
+
+
+```{r Data Preparation}
+sonde_unite <- unite(Pellicer,
+                     "DateTime", Date..MM.DD.YYYY., Time..HH.mm.ss.)
+
+sonde <- mutate(sonde_unite, 
+                TimeStamp = ymd_hms(sonde_unite$DateTime))
+
+Precip1 <- mutate(Precip, 
+                  TimeStamp = mdy_hm(Precip$DateTimeStamp))
+
+ult_data <- difference_join(sonde, Precip1, 
+                            by = "TimeStamp", mode = "inner", max_dist = 180) %>%
+  dplyr::select(5:30,44:57) %>%
+  rename(Sonde_Time = TimeStamp.x, Precip_Time = TimeStamp.y)
+```
+
+
+```{r spatial reference, warning = FALSE}
+#study location: 29.66, -81.22
+world <- ne_countries(scale = "medium", returnclass = "sf")
+ggplot(data = world) +
+    geom_sf() +
+    coord_sf(xlim = c(-90.15, -70.12), ylim = c(25.65, 30.97), expand = FALSE) +
+  theme(panel.grid.major = element_line(color = gray(.5), linetype = "dashed", size = 0.5), panel.background = element_rect(fill = "aliceblue")) +
+  annotate("point", x = -81.22, y = 29.66, colour = "red") +
+    ggtitle("Study Location = Pellicer Creek") + 
+    xlab("") +
+    ylab("")
+```
+
+
+```{r}
+ggplot(ult_data) + geom_line(aes(x = Sonde_Time, y = fDOM.QSU)) + theme_classic() + xlab("Date") + ylab("fDOM (QSU)") + ggtitle("fDOM From July 2nd to July 29th")
+```
+
+```{r}
+drought_min <- ymd_hm("2019-07-14 12:00")
+drought_max <- ymd_hm("2019-07-19 12:00")
+```
+
+```{r}
+rain_min <- ymd_hm("2019-07-23 12:00")
+rain_max <- ymd_hm("2019-07-28 12:00")
+```
+
+```{r, echo=FALSE}
+fDOM_drought <- ggplot(ult_data) + geom_line(aes(x = Sonde_Time, y = fDOM.QSU)) + 
+  scale_x_datetime(limits = c(drought_min, drought_max),
+                   date_labels = "%b %d",) + 
+  theme_classic() +
+  ylab("fDOM (QSU)") +
+  xlab("")
+
+
+Precip_drought <- ggplot(ult_data) + geom_line(aes(x= Precip_Time, y= TotPrcp)) + 
+  scale_x_datetime(limits = c(drought_min,drought_max),
+                   date_labels = "%b %d",) + 
+  theme_classic() +
+  ylab("Total Precipitation (mm)") +
+  xlab("Date")
+```
+
+```{r, echo=FALSE}
+fDOM_rain <- ggplot(ult_data) + geom_line(aes(x = Sonde_Time, y = fDOM.QSU)) + 
+  scale_x_datetime(limits = c(rain_min, rain_max),
+                   date_labels = "%b %d") + 
+  theme_classic() +
+  ylab("") +
+  xlab("") 
+
+
+Precip_rain <- ggplot(ult_data) + geom_line(aes(x= Precip_Time, y= TotPrcp)) + 
+  scale_x_datetime(limits = c(rain_min,rain_max),
+                   date_labels = "%b %d",) + 
+  theme_classic() +
+  ylab("") +
+  xlab("Date")
+```
+
+```{r, warning = FALSE}
+ggarrange(fDOM_drought, fDOM_rain, Precip_drought, Precip_rain, ncol = 2, nrow = 2, align = "v", 
+          labels = c("           Drought", "        Precipitation"))
+```
+
+```{r, echo=FALSE}
+ult_data_d <- ult_data %>%
+  filter(Precip_Time >= "2019-07-14 12:00" & Precip_Time <= "2019-07-19 12:00")
+
+ult_data_r <- ult_data %>%
+  filter(Precip_Time >= "2019-07-23 12:00" & Precip_Time <= "2019-07-28 12:00")
+```
+
+```{r Contingency Table, warning = FALSE}
+ult_data_d$size <- ifelse(ult_data_d$fDOM.QSU < mean(ult_data_d$fDOM.QSU), "Small", "Big") 
+
+ult_data_r$size <- ifelse(ult_data_r$fDOM.QSU < mean(ult_data_r$fDOM.QSU), "Small", "Big")
+#no difference between the two for proportions of big to small when comparing to the median
+table(ult_data_d$size) #big=241 small=240
+table(ult_data_r$size) #big=241 small=240
+
+drought <- ggplot(ult_data_d) + 
+  aes(x=size)+
+  geom_bar() +
+  ylab("fDOM Counts")+
+  theme_classic()
+
+rain <- ggplot(ult_data_r) + 
+  aes(x=size)+
+  geom_bar() + 
+  ylab("fDOM Counts")+
+  theme_classic() 
+
+ggarrange(drought, rain, nrow = 1, ncol = 2, labels = c("   Drought", "     Rain"))
+```
+
+```{r, echo=FALSE}
+pulse <- ggplot(ult_data) + geom_line(aes(Sonde_Time,fDOM.QSU)) + 
+  scale_x_datetime(limits = c(ymd_hm("2019-07-27 00:00"), ymd_hm("2019-07-28 00:00")),
+                   date_labels = "%H",
+                   breaks = date_breaks("60 min"),
+                   expand = c(0, 0)) + 
+  theme_classic() +
+  ylab("fDOM (QSU)") + 
+  xlab("") + 
+  annotate("rect", xmin = ymd_hm("2019-07-27 13:00"), xmax = ymd_hm("2019-07-27 14:45"), ymin = 55, ymax = 115, alpha = .2) +
+  annotate("text", label = "Pulse of fDOM", x = ymd_hm("2019-07-27 14:00"), y = 130)
+
+storm <- ggplot(ult_data) + geom_line(aes(Precip_Time,TotPrcp)) + 
+  scale_x_datetime(limits = c(ymd_hm("2019-07-27 00:00"), ymd_hm("2019-07-28 00:00")),
+                   date_labels = "%H",
+                   breaks = date_breaks("60 min"),
+                   expand = c(0, 0)) + 
+  theme_classic() +
+  ylab("Precipitation (mm)") + 
+  xlab("Hour")
+```
+
+```{r, warning=FALSE}
+ggarrange(pulse, storm, nrow = 2, ncol = 1, align = "v", labels = " July 27th Storm Event")
+```
+
+
+```{r, warning=FALSE}
+library(GGally)
+ggpairs(data = ult_data, columns = c(1,3), title="Precipitation's Predictive Potential for fDOM") +
+theme_classic()
+```
+
+```{r, warning=FALSE}
+library(zyp)
+#A tool used when heteroscedasticity variability of a variable is unequal across a range of values 
+#via the Thiel-sen test
+
+zen_data <- data.frame("fDOM"=ult_data$fDOM.QSU,"Time"=as.numeric(ult_data$Sonde_Time, units="minutes"))
+
+zen <- zyp.sen(fDOM~Time,zen_data)
+
+ci <- confint.zyp(zen)
+
+print(ci)
+````
+
+
