@@ -4,6 +4,7 @@ author: "Gabriel Barrett, Nathan Shivers, Jacqueline Stephens"
 date: "5/12/2020"
 output:
   html_document:
+    theme: cosmo
     keep_md: true
 ---
 
