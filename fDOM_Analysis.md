@@ -14,7 +14,7 @@ output:
 
 ```r
 knitr::kable(
-  head(Pellicer[5:10]), format = "html",caption = "YSI exo2 Sonde Data",
+  head(Pellicer[5:20]), format = "html",caption = "YSI exo2 Sonde Data",
   booktabs = TRUE
 )
 ```
@@ -29,6 +29,16 @@ knitr::kable(
    <th style="text-align:right;"> Cond.µS.cm </th>
    <th style="text-align:right;"> Depth.m </th>
    <th style="text-align:right;"> fDOM.QSU </th>
+   <th style="text-align:right;"> fDOM.RFU </th>
+   <th style="text-align:right;"> nLF.Cond.µS.cm </th>
+   <th style="text-align:right;"> ODO...sat </th>
+   <th style="text-align:right;"> ODO...local </th>
+   <th style="text-align:right;"> ODO.mg.L </th>
+   <th style="text-align:right;"> Pressure.psi.a </th>
+   <th style="text-align:right;"> Sal.psu </th>
+   <th style="text-align:right;"> SpCond.µS.cm </th>
+   <th style="text-align:right;"> BGA.PE.RFU </th>
+   <th style="text-align:right;"> BGA.PE.ug.L </th>
   </tr>
  </thead>
 <tbody>
@@ -39,6 +49,16 @@ knitr::kable(
    <td style="text-align:right;"> 60640.3 </td>
    <td style="text-align:right;"> 10.860 </td>
    <td style="text-align:right;"> 24.92 </td>
+   <td style="text-align:right;"> 8.31 </td>
+   <td style="text-align:right;"> 51939.2 </td>
+   <td style="text-align:right;"> 101.3 </td>
+   <td style="text-align:right;"> 105.0 </td>
+   <td style="text-align:right;"> 6.06 </td>
+   <td style="text-align:right;"> 15.763 </td>
+   <td style="text-align:right;"> 34.58 </td>
+   <td style="text-align:right;"> 52833.1 </td>
+   <td style="text-align:right;"> 4.03 </td>
+   <td style="text-align:right;"> 11.28 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Pellicer out </td>
@@ -47,6 +67,16 @@ knitr::kable(
    <td style="text-align:right;"> 60943.5 </td>
    <td style="text-align:right;"> 10.903 </td>
    <td style="text-align:right;"> 25.13 </td>
+   <td style="text-align:right;"> 8.38 </td>
+   <td style="text-align:right;"> 52002.9 </td>
+   <td style="text-align:right;"> 103.4 </td>
+   <td style="text-align:right;"> 107.2 </td>
+   <td style="text-align:right;"> 6.17 </td>
+   <td style="text-align:right;"> 15.823 </td>
+   <td style="text-align:right;"> 34.64 </td>
+   <td style="text-align:right;"> 52923.2 </td>
+   <td style="text-align:right;"> 4.39 </td>
+   <td style="text-align:right;"> 12.29 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Pellicer out </td>
@@ -55,6 +85,16 @@ knitr::kable(
    <td style="text-align:right;"> 60287.2 </td>
    <td style="text-align:right;"> 10.941 </td>
    <td style="text-align:right;"> 25.41 </td>
+   <td style="text-align:right;"> 8.47 </td>
+   <td style="text-align:right;"> 51794.1 </td>
+   <td style="text-align:right;"> 102.5 </td>
+   <td style="text-align:right;"> 106.3 </td>
+   <td style="text-align:right;"> 6.16 </td>
+   <td style="text-align:right;"> 15.879 </td>
+   <td style="text-align:right;"> 34.46 </td>
+   <td style="text-align:right;"> 52665.3 </td>
+   <td style="text-align:right;"> 4.91 </td>
+   <td style="text-align:right;"> 13.75 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Pellicer out </td>
@@ -63,6 +103,16 @@ knitr::kable(
    <td style="text-align:right;"> 59427.8 </td>
    <td style="text-align:right;"> 10.974 </td>
    <td style="text-align:right;"> 25.73 </td>
+   <td style="text-align:right;"> 8.58 </td>
+   <td style="text-align:right;"> 51597.4 </td>
+   <td style="text-align:right;"> 100.4 </td>
+   <td style="text-align:right;"> 104.1 </td>
+   <td style="text-align:right;"> 6.09 </td>
+   <td style="text-align:right;"> 15.928 </td>
+   <td style="text-align:right;"> 34.28 </td>
+   <td style="text-align:right;"> 52396.4 </td>
+   <td style="text-align:right;"> 5.54 </td>
+   <td style="text-align:right;"> 15.50 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Pellicer out </td>
@@ -71,6 +121,16 @@ knitr::kable(
    <td style="text-align:right;"> 58886.9 </td>
    <td style="text-align:right;"> 11.007 </td>
    <td style="text-align:right;"> 25.42 </td>
+   <td style="text-align:right;"> 8.47 </td>
+   <td style="text-align:right;"> 51526.9 </td>
+   <td style="text-align:right;"> 98.4 </td>
+   <td style="text-align:right;"> 102.0 </td>
+   <td style="text-align:right;"> 6.00 </td>
+   <td style="text-align:right;"> 15.977 </td>
+   <td style="text-align:right;"> 34.21 </td>
+   <td style="text-align:right;"> 52274.9 </td>
+   <td style="text-align:right;"> 6.18 </td>
+   <td style="text-align:right;"> 17.32 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Pellicer out </td>
@@ -79,29 +139,153 @@ knitr::kable(
    <td style="text-align:right;"> 58759.5 </td>
    <td style="text-align:right;"> 11.047 </td>
    <td style="text-align:right;"> 24.95 </td>
+   <td style="text-align:right;"> 8.32 </td>
+   <td style="text-align:right;"> 51538.8 </td>
+   <td style="text-align:right;"> 97.1 </td>
+   <td style="text-align:right;"> 100.7 </td>
+   <td style="text-align:right;"> 5.94 </td>
+   <td style="text-align:right;"> 16.036 </td>
+   <td style="text-align:right;"> 34.21 </td>
+   <td style="text-align:right;"> 52271.7 </td>
+   <td style="text-align:right;"> 5.88 </td>
+   <td style="text-align:right;"> 16.45 </td>
   </tr>
 </tbody>
 </table>
 
 ```r
 knitr::kable(
-  head(Precip[1:5]), caption = "NERR Climatic Data",
+  head(Precip[1:15]), format = "html",caption = "NERR Climatic Data",
   booktabs = TRUE
 )
 ```
 
-
-
-Table: NERR Climatic Data
-
-Station_Code   isSWMP   DateTimeStamp    Historical   ProvisionalPlus
--------------  -------  --------------  -----------  ----------------
-gtmpcmet       P        7/2/2019 0:00             0                 1
-gtmpcmet       P        7/2/2019 0:15             0                 1
-gtmpcmet       P        7/2/2019 0:30             0                 1
-gtmpcmet       P        7/2/2019 0:45             0                 1
-gtmpcmet       P        7/2/2019 1:00             0                 1
-gtmpcmet       P        7/2/2019 1:15             0                 1
+<table>
+<caption>NERR Climatic Data</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Station_Code </th>
+   <th style="text-align:left;"> isSWMP </th>
+   <th style="text-align:left;"> DateTimeStamp </th>
+   <th style="text-align:right;"> Historical </th>
+   <th style="text-align:right;"> ProvisionalPlus </th>
+   <th style="text-align:right;"> Frequency </th>
+   <th style="text-align:left;"> F_Record </th>
+   <th style="text-align:right;"> ATemp </th>
+   <th style="text-align:left;"> F_ATemp </th>
+   <th style="text-align:right;"> RH </th>
+   <th style="text-align:left;"> F_RH </th>
+   <th style="text-align:right;"> BP </th>
+   <th style="text-align:left;"> F_BP </th>
+   <th style="text-align:right;"> WSpd </th>
+   <th style="text-align:left;"> F_WSpd </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> gtmpcmet </td>
+   <td style="text-align:left;"> P </td>
+   <td style="text-align:left;"> 7/2/2019 0:00 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 25.7 </td>
+   <td style="text-align:left;"> &lt;0&gt; </td>
+   <td style="text-align:right;"> 100 </td>
+   <td style="text-align:left;"> &lt;0&gt; </td>
+   <td style="text-align:right;"> 1016 </td>
+   <td style="text-align:left;"> &lt;1&gt; [SSD] </td>
+   <td style="text-align:right;"> 1.5 </td>
+   <td style="text-align:left;"> &lt;0&gt; </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> gtmpcmet </td>
+   <td style="text-align:left;"> P </td>
+   <td style="text-align:left;"> 7/2/2019 0:15 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 25.6 </td>
+   <td style="text-align:left;"> &lt;0&gt; </td>
+   <td style="text-align:right;"> 100 </td>
+   <td style="text-align:left;"> &lt;0&gt; </td>
+   <td style="text-align:right;"> 1016 </td>
+   <td style="text-align:left;"> &lt;1&gt; [SSD] </td>
+   <td style="text-align:right;"> 2.0 </td>
+   <td style="text-align:left;"> &lt;0&gt; </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> gtmpcmet </td>
+   <td style="text-align:left;"> P </td>
+   <td style="text-align:left;"> 7/2/2019 0:30 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 25.6 </td>
+   <td style="text-align:left;"> &lt;0&gt; </td>
+   <td style="text-align:right;"> 100 </td>
+   <td style="text-align:left;"> &lt;0&gt; </td>
+   <td style="text-align:right;"> 1016 </td>
+   <td style="text-align:left;"> &lt;1&gt; [SSD] </td>
+   <td style="text-align:right;"> 1.8 </td>
+   <td style="text-align:left;"> &lt;0&gt; </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> gtmpcmet </td>
+   <td style="text-align:left;"> P </td>
+   <td style="text-align:left;"> 7/2/2019 0:45 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 25.5 </td>
+   <td style="text-align:left;"> &lt;0&gt; </td>
+   <td style="text-align:right;"> 100 </td>
+   <td style="text-align:left;"> &lt;0&gt; </td>
+   <td style="text-align:right;"> 1016 </td>
+   <td style="text-align:left;"> &lt;1&gt; [SSD] </td>
+   <td style="text-align:right;"> 1.8 </td>
+   <td style="text-align:left;"> &lt;0&gt; </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> gtmpcmet </td>
+   <td style="text-align:left;"> P </td>
+   <td style="text-align:left;"> 7/2/2019 1:00 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 25.4 </td>
+   <td style="text-align:left;"> &lt;0&gt; </td>
+   <td style="text-align:right;"> 100 </td>
+   <td style="text-align:left;"> &lt;0&gt; </td>
+   <td style="text-align:right;"> 1016 </td>
+   <td style="text-align:left;"> &lt;1&gt; [SSD] </td>
+   <td style="text-align:right;"> 1.6 </td>
+   <td style="text-align:left;"> &lt;0&gt; </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> gtmpcmet </td>
+   <td style="text-align:left;"> P </td>
+   <td style="text-align:left;"> 7/2/2019 1:15 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 25.3 </td>
+   <td style="text-align:left;"> &lt;0&gt; </td>
+   <td style="text-align:right;"> 100 </td>
+   <td style="text-align:left;"> &lt;0&gt; </td>
+   <td style="text-align:right;"> 1015 </td>
+   <td style="text-align:left;"> &lt;1&gt; [SSD] </td>
+   <td style="text-align:right;"> 1.7 </td>
+   <td style="text-align:left;"> &lt;0&gt; </td>
+  </tr>
+</tbody>
+</table>
 
 
 ```r
