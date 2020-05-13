@@ -14,23 +14,74 @@ output:
 
 ```r
 knitr::kable(
-  head(Pellicer[5:10]), caption = "YSI exo2 Sonde Data",
+  head(Pellicer[5:10]), format = "html",caption = "YSI exo2 Sonde Data",
   booktabs = TRUE
 )
 ```
 
-
-
-Table: YSI exo2 Sonde Data
-
-Site.Name       Chlorophyll.RFU   Chlorophyll.ug.L   Cond.µS.cm   Depth.m   fDOM.QSU
--------------  ----------------  -----------------  -----------  --------  ---------
-Pellicer out               0.99               3.95      60640.3    10.860      24.92
-Pellicer out               0.94               3.75      60943.5    10.903      25.13
-Pellicer out               1.26               5.04      60287.2    10.941      25.41
-Pellicer out               1.53               6.10      59427.8    10.974      25.73
-Pellicer out               1.64               6.56      58886.9    11.007      25.42
-Pellicer out               2.16               8.64      58759.5    11.047      24.95
+<table>
+<caption>YSI exo2 Sonde Data</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Site.Name </th>
+   <th style="text-align:right;"> Chlorophyll.RFU </th>
+   <th style="text-align:right;"> Chlorophyll.ug.L </th>
+   <th style="text-align:right;"> Cond.µS.cm </th>
+   <th style="text-align:right;"> Depth.m </th>
+   <th style="text-align:right;"> fDOM.QSU </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Pellicer out </td>
+   <td style="text-align:right;"> 0.99 </td>
+   <td style="text-align:right;"> 3.95 </td>
+   <td style="text-align:right;"> 60640.3 </td>
+   <td style="text-align:right;"> 10.860 </td>
+   <td style="text-align:right;"> 24.92 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pellicer out </td>
+   <td style="text-align:right;"> 0.94 </td>
+   <td style="text-align:right;"> 3.75 </td>
+   <td style="text-align:right;"> 60943.5 </td>
+   <td style="text-align:right;"> 10.903 </td>
+   <td style="text-align:right;"> 25.13 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pellicer out </td>
+   <td style="text-align:right;"> 1.26 </td>
+   <td style="text-align:right;"> 5.04 </td>
+   <td style="text-align:right;"> 60287.2 </td>
+   <td style="text-align:right;"> 10.941 </td>
+   <td style="text-align:right;"> 25.41 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pellicer out </td>
+   <td style="text-align:right;"> 1.53 </td>
+   <td style="text-align:right;"> 6.10 </td>
+   <td style="text-align:right;"> 59427.8 </td>
+   <td style="text-align:right;"> 10.974 </td>
+   <td style="text-align:right;"> 25.73 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pellicer out </td>
+   <td style="text-align:right;"> 1.64 </td>
+   <td style="text-align:right;"> 6.56 </td>
+   <td style="text-align:right;"> 58886.9 </td>
+   <td style="text-align:right;"> 11.007 </td>
+   <td style="text-align:right;"> 25.42 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pellicer out </td>
+   <td style="text-align:right;"> 2.16 </td>
+   <td style="text-align:right;"> 8.64 </td>
+   <td style="text-align:right;"> 58759.5 </td>
+   <td style="text-align:right;"> 11.047 </td>
+   <td style="text-align:right;"> 24.95 </td>
+  </tr>
+</tbody>
+</table>
 
 ```r
 knitr::kable(
