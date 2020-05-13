@@ -26,12 +26,12 @@ Precip <- read.csv("GTMPCMET.csv")
 
 ```{r}
 knitr::kable(
-  head(Pellicer[5:10]), caption = "YSI exo2 Sonde Data",
+  head(Pellicer), format = "html",caption = "YSI exo2 Sonde Data",
   booktabs = TRUE
 )
 
 knitr::kable(
-  head(Precip[1:5]), caption = "NERR Climatic Data",
+  head(Precip), format = "html",caption = "NERR Climatic Data",
   booktabs = TRUE
 )
 ```
