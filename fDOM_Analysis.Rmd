@@ -7,7 +7,7 @@ output:
     keep_md: true
 ---
 
-```{r setup}
+```{r setup, include=FALSE}
 library(tidyverse)
 library(ggplot2)
 library(ggpubr)
@@ -46,7 +46,6 @@ knitr::kable(
 )
 
 ```
-
 
 ```{r, include=FALSE}
 drought_min <- ymd_hm("2019-07-14 12:00")
@@ -92,12 +91,12 @@ Precip_rain <- ggplot(ult_data) + geom_line(aes(x= Precip_Time, y= TotPrcp)) +
   xlab("Date")
 ```
 
-```{r, warning = FALSE}
+```{r, warning=FALSE}
 ggarrange(fDOM_drought, fDOM_rain, Precip_drought, Precip_rain, ncol = 2, nrow = 2, align = "v", 
           labels = c("           Drought", "        Precipitation"))
 ```
 
-```{r}
+```{r, include=FALSE}
 ult_data_d <- ult_data %>%
   filter(Precip_Time >= "2019-07-14 12:00" & Precip_Time <= "2019-07-19 12:00")
 
@@ -109,9 +108,6 @@ ult_data_r <- ult_data %>%
 ult_data_d$size <- ifelse(ult_data_d$fDOM.QSU < mean(ult_data_d$fDOM.QSU), "Small", "Big") 
 
 ult_data_r$size <- ifelse(ult_data_r$fDOM.QSU < mean(ult_data_r$fDOM.QSU), "Small", "Big")
-#no difference between the two for proportions of big to small when comparing to the median
-table(ult_data_d$size) #big=241 small=240
-table(ult_data_r$size) #big=241 small=240
 
 drought <- ggplot(ult_data_d) + 
   aes(x=size)+
@@ -128,7 +124,7 @@ rain <- ggplot(ult_data_r) +
 ggarrange(drought, rain, nrow = 1, ncol = 2, labels = c("   Drought", "     Rain"))
 ```
 
-```{r, echo=FALSE}
+```{r}
 pulse <- ggplot(ult_data) + geom_line(aes(Sonde_Time,fDOM.QSU)) + 
   scale_x_datetime(limits = c(ymd_hm("2019-07-27 00:00"), ymd_hm("2019-07-28 00:00")),
                    date_labels = "%H",
@@ -150,7 +146,7 @@ storm <- ggplot(ult_data) + geom_line(aes(Precip_Time,TotPrcp)) +
   xlab("Hour")
 ```
 
-```{r, warning=FALSE}
+```{r}
 ggarrange(pulse, storm, nrow = 2, ncol = 1, align = "v", labels = " July 27th Storm Event")
 ```
 
