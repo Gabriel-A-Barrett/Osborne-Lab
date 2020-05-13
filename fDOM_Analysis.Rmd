@@ -7,16 +7,16 @@ output:
     keep_md: true
 ---
 
-```{r setup, include=FALSE,echo=FALSE}
+```{r setup}
 library(tidyverse)
 library(ggplot2)
 library(ggpubr)
 library(scales)
 library(fuzzyjoin)
 library(lubridate)
-library("ggspatial")
-library("rnaturalearth")
-library("rnaturalearthdata")
+library(zyp)
+library(GGally)
+library(knitr)
 setwd("C:/Users/eagle/Documents/2019-2021/2020-2021 Spring/EEB4100/Group_Project/")
 Pellicer <- read.csv("Pellicer_Sonde_Data.csv") 
 Precip <- read.csv("GTMPCMET.csv")
@@ -39,36 +39,26 @@ ult_data <- difference_join(sonde, Precip1,
   rename(Sonde_Time = TimeStamp.x, Precip_Time = TimeStamp.y)
 ```
 
+```{r}
+knitr::kable(
+  head(ult_data), caption = "",
+  booktabs = TRUE
+)
 
-```{r spatial reference, warning = FALSE}
-#study location: 29.66, -81.22
-world <- ne_countries(scale = "medium", returnclass = "sf")
-ggplot(data = world) +
-    geom_sf() +
-    coord_sf(xlim = c(-90.15, -70.12), ylim = c(25.65, 30.97), expand = FALSE) +
-  theme(panel.grid.major = element_line(color = gray(.5), linetype = "dashed", size = 0.5), panel.background = element_rect(fill = "aliceblue")) +
-  annotate("point", x = -81.22, y = 29.66, colour = "red") +
-    ggtitle("Study Location = Pellicer Creek") + 
-    xlab("") +
-    ylab("")
 ```
 
 
-```{r}
-ggplot(ult_data) + geom_line(aes(x = Sonde_Time, y = fDOM.QSU)) + theme_classic() + xlab("Date") + ylab("fDOM (QSU)") + ggtitle("fDOM From July 2nd to July 29th")
-```
-
-```{r}
+```{r, include=FALSE}
 drought_min <- ymd_hm("2019-07-14 12:00")
 drought_max <- ymd_hm("2019-07-19 12:00")
 ```
 
-```{r}
+```{r, include=FALSE}
 rain_min <- ymd_hm("2019-07-23 12:00")
 rain_max <- ymd_hm("2019-07-28 12:00")
 ```
 
-```{r, echo=FALSE}
+```{r}
 fDOM_drought <- ggplot(ult_data) + geom_line(aes(x = Sonde_Time, y = fDOM.QSU)) + 
   scale_x_datetime(limits = c(drought_min, drought_max),
                    date_labels = "%b %d",) + 
@@ -85,7 +75,7 @@ Precip_drought <- ggplot(ult_data) + geom_line(aes(x= Precip_Time, y= TotPrcp)) 
   xlab("Date")
 ```
 
-```{r, echo=FALSE}
+```{r}
 fDOM_rain <- ggplot(ult_data) + geom_line(aes(x = Sonde_Time, y = fDOM.QSU)) + 
   scale_x_datetime(limits = c(rain_min, rain_max),
                    date_labels = "%b %d") + 
@@ -107,7 +97,7 @@ ggarrange(fDOM_drought, fDOM_rain, Precip_drought, Precip_rain, ncol = 2, nrow =
           labels = c("           Drought", "        Precipitation"))
 ```
 
-```{r, echo=FALSE}
+```{r}
 ult_data_d <- ult_data %>%
   filter(Precip_Time >= "2019-07-14 12:00" & Precip_Time <= "2019-07-19 12:00")
 
@@ -166,13 +156,11 @@ ggarrange(pulse, storm, nrow = 2, ncol = 1, align = "v", labels = " July 27th St
 
 
 ```{r, warning=FALSE}
-library(GGally)
 ggpairs(data = ult_data, columns = c(5,38), title="Precipitation's Predictive Potential for fDOM") +
 theme_classic()
 ```
 
 ```{r, warning=FALSE}
-library(zyp)
 #A tool used when heteroscedasticity variability of a variable is unequal across a range of values 
 #via the Thiel-sen test
 
