@@ -2,7 +2,7 @@
 title: "Analyzing fDOM"
 author: "Gabriel Barrett, Nathan Shivers, Jacqueline Stephens"
 date: "5/12/2020"
-output: github_document
+output:
   html_document:
     keep_md: true
 ---
