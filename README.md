@@ -1,3 +1,3 @@
-# Osborne-LabAn edit into the ReadMe
-/n another line
-double checking
+# Osborne-Lab
+
+This repository is intended to be a library for code that can handle YSI exo2 Data. 
