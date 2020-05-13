@@ -4,6 +4,7 @@ author: "Gabriel Barrett, Nathan Shivers, Jacqueline Stephens"
 date: "5/12/2020"
 output:
   html_document:
+    theme: cosmo
     keep_md: true
 ---
 
@@ -23,6 +24,18 @@ Precip <- read.csv("GTMPCMET.csv")
 ```
 
 
+```{r}
+knitr::kable(
+  head(Pellicer[5:10]), caption = "YSI exo2 Sonde Data",
+  booktabs = TRUE
+)
+
+knitr::kable(
+  head(Precip[1:5]), caption = "NERR Climatic Data",
+  booktabs = TRUE
+)
+```
+
 ```{r Data Preparation}
 sonde_unite <- unite(Pellicer,
                      "DateTime", Date..MM.DD.YYYY., Time..HH.mm.ss.)
@@ -39,13 +52,6 @@ ult_data <- difference_join(sonde, Precip1,
   rename(Sonde_Time = TimeStamp.x, Precip_Time = TimeStamp.y)
 ```
 
-```{r}
-knitr::kable(
-  head(ult_data), caption = "",
-  booktabs = TRUE
-)
-
-```
 
 ```{r, include=FALSE}
 drought_min <- ymd_hm("2019-07-14 12:00")
@@ -104,7 +110,7 @@ ult_data_r <- ult_data %>%
   filter(Precip_Time >= "2019-07-23 12:00" & Precip_Time <= "2019-07-28 12:00")
 ```
 
-```{r Contingency Table, warning = FALSE}
+```{r Contingency Table, warning = FALSE, include=FALSE}
 ult_data_d$size <- ifelse(ult_data_d$fDOM.QSU < mean(ult_data_d$fDOM.QSU), "Small", "Big") 
 
 ult_data_r$size <- ifelse(ult_data_r$fDOM.QSU < mean(ult_data_r$fDOM.QSU), "Small", "Big")
@@ -146,7 +152,7 @@ storm <- ggplot(ult_data) + geom_line(aes(Precip_Time,TotPrcp)) +
   xlab("Hour")
 ```
 
-```{r}
+```{r, warning=FALSE}
 ggarrange(pulse, storm, nrow = 2, ncol = 1, align = "v", labels = " July 27th Storm Event")
 ```
 
