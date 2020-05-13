@@ -165,7 +165,7 @@ ggarrange(pulse, storm, nrow = 2, ncol = 1, align = "v", labels = " July 27th St
 
 ```{r, warning=FALSE}
 library(GGally)
-ggpairs(data = ult_data, columns = c(1,3), title="Precipitation's Predictive Potential for fDOM") +
+ggpairs(data = ult_data, columns = c(5,38), title="Precipitation's Predictive Potential for fDOM") +
 theme_classic()
 ```
 
