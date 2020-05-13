@@ -120,27 +120,6 @@ ggarrange(fDOM_drought, fDOM_rain, Precip_drought, Precip_rain, ncol = 2, nrow =
 
 
 
-```r
-ult_data_d$size <- ifelse(ult_data_d$fDOM.QSU < mean(ult_data_d$fDOM.QSU), "Small", "Big") 
-
-ult_data_r$size <- ifelse(ult_data_r$fDOM.QSU < mean(ult_data_r$fDOM.QSU), "Small", "Big")
-
-drought <- ggplot(ult_data_d) + 
-  aes(x=size)+
-  geom_bar() +
-  ylab("fDOM Counts")+
-  theme_classic()
-
-rain <- ggplot(ult_data_r) + 
-  aes(x=size)+
-  geom_bar() + 
-  ylab("fDOM Counts")+
-  theme_classic() 
-
-ggarrange(drought, rain, nrow = 1, ncol = 2, labels = c("   Drought", "     Rain"))
-```
-
-![](fDOM_Analysis_files/figure-html/Contingency Table-1.png)<!-- -->
 
 
 ```r
@@ -168,12 +147,6 @@ storm <- ggplot(ult_data) + geom_line(aes(Precip_Time,TotPrcp)) +
 
 ```r
 ggarrange(pulse, storm, nrow = 2, ncol = 1, align = "v", labels = " July 27th Storm Event")
-```
-
-```
-## Warning: Removed 2421 rows containing missing values (geom_path).
-
-## Warning: Removed 2421 rows containing missing values (geom_path).
 ```
 
 ![](fDOM_Analysis_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
